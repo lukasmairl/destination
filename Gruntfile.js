@@ -9,6 +9,16 @@ module.exports = function (grunt) {
 	grunt.initConfig({
 		config: config,
 
+		uglify: {
+			options: {
+		  		mangle: false
+			},
+			dist: {
+		  		files: {
+		    		
+		  		}
+			}
+		},
 		compass: {
 			develop: {
 				options: {
@@ -20,7 +30,15 @@ module.exports = function (grunt) {
 				}
 			}
 		},
-
+        cssmin: {
+        	options: {
+        		report: 'gzip'
+        	},
+            css:{
+                src: 'css/framework.css',
+                dest: 'css/framework.min.css'
+            }
+        },
 		watch: {
 			options: {
 				nospawn: true
@@ -37,10 +55,20 @@ module.exports = function (grunt) {
 
 	grunt.loadNpmTasks('grunt-contrib-watch');
 	grunt.loadNpmTasks('grunt-contrib-compass');
+	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-cssmin');
 
 	grunt.registerTask('dev', [
 		'compass:'+ target,
 		'watch'
+	]);
+
+	grunt.registerTask('jsmin', [
+		'uglify'
+	]);
+
+	grunt.registerTask('csscompress', [
+		'cssmin'
 	]);
 
 };

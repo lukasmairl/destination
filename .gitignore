@@ -1,1 +1,5 @@
+.sass-cache
+css/framework.min.css
+css/*.min
+.DS_Store
 node_modules/
