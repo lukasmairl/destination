@@ -1,0 +1,47 @@
+@import "compass";
+@import "libs/normalize";
+@import "libs/csstyle";
+@import "fonts";
+@import "variables";
+
+
+@include component(button) {
+	background-color: $color-green;
+	color: #fff;
+	padding: 15px;
+	cursor:pointer;
+	@include border-radius(23px);
+	text-transform:uppercase;
+	display:block;
+	text-align:center;
+	font-family: 'bebas_neuelight';
+}
+
+@include tweak(circular) {
+	background-color:#fff;
+	border:1px solid $color-green;
+	color:$color-green;
+	font-family: 'bebas_neuelight';
+	font-size:28px;
+	margin: 36px;
+	width: 77px;
+	height: 77px;
+	padding:0;
+	position: relative;
+	text-align: center;
+	line-height: 77px;
+	border-radius: 50%;
+
+	&:hover {
+		background-color:$color-green;
+		color:#fff;
+	}
+}
+
+
+@include location(home) {
+  @include component(button){
+    color: #6BD9ED;
+    background: #1F1F1F;
+  }
+}
