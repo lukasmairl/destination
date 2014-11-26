@@ -1,0 +1,139 @@
+/*
+	~1. at-breakpoint
+	~2. layout
+	~2. gird/column
+		~2.1 offset-margin
+		~2.2 offset-padding
+	~3. clearfix
+	~4. fonts
+		~4.1 Covert px to em
+		~4.2 Covert px to em relatively to the parent font size
+	~5. clearfix
+
+*/
+
+/* ~1. at-breakpoint
+---------------------------------------------------*/
+@mixin resetColums () {
+	$page-margin: 6%;
+	$total-columns: 12;
+	$column-width: (100 /$total-columns) * 1%;
+}
+
+@mixin at-breakpoint($viewport) {
+
+	@if nth($viewport, 1) == small-screen {
+		$total-columns: 6;
+		$column-width: (100 /$total-columns) * 1%;
+		$page-margin: 3%;
+
+	}
+
+	@else if nth($viewport, 1) == medium-screen {
+		$total-columns: 12;
+		$column-width: (100 /$total-columns) * 1%;
+		$page-margin: 6%;
+
+
+	}
+
+	@else if nth($viewport, 1) == large-screen {
+		$total-columns: 12;
+		$column-width: (100 /$total-columns) * 1%;
+
+
+	}
+
+	@if length($viewport) == 2 {
+		@media (min-width: nth($viewport, 2)) {
+			@content;
+		}
+	}
+	@else {
+		@media (min-width: nth($viewport, 2)) and (max-width: nth($viewport, 3)) {
+			@content;
+		}
+	}
+
+
+	@include resetColums;
+
+}
+
+@mixin retina($viewport){
+	@media (min-width: nth($viewport, 2)) and (max-width: nth($viewport, 3)) and (-webkit-min-device-pixel-ratio: 2) and (min-resolution: 192dpi){
+		@content;
+	}
+}
+
+/* ~2. layout
+---------------------------------------------------*/
+
+@mixin page-layout {
+	max-width: $max-width;
+	margin: 0 auto;
+	display: block;
+	text-align:left;
+}
+
+@mixin content-layout {
+	max-width: $content-max-width;
+	margin: 0 auto;
+	display: block;
+	text-align:left;
+}
+
+
+
+/* ~3.grid/column
+---------------------------------------------------*/
+@mixin span-columns ($i, $padding:'true', $imporant:null) {
+
+	@if $i == $total-columns {
+		width: 100%$imporant;
+	}
+
+	@else {
+		width: (100 / ($total-columns / $i) ) * 1%$imporant;
+	}
+
+	@if $padding == 'true' {
+		padding: 0 $gutter-width/2;
+	}
+
+}
+
+
+
+
+/* ~3.1 offset-margin
+---------------------------------------------------*/
+@mixin offset-left ($num) {
+
+	margin-left: (100 / ($total-columns / $num) )  * 1%;
+}
+
+@mixin offset-right ($num) {
+
+	margin-right: (100 / ($total-columns / $num) )  * 1%;
+}
+/* ~3.2 offset-padding
+---------------------------------------------------*/
+@mixin offset-left-padding ($num) {
+
+	padding-left: (100 / ($total-columns / $num) )  * 1%;
+}
+
+@mixin offset-right-padding ($num) {
+
+	padding-right: (100 / ($total-columns / $num) )  * 1%;
+}
+
+
+@mixin offset-padding ($num) {
+
+	padding:0 (100 / $total-columns) * $num  * 1%;
+}
+
+
+

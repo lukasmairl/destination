@@ -3,7 +3,7 @@
 module.exports = function (grunt) {
 	var target = grunt.option('target') || 'develop';
 	var config = {
-			'rootdir': '/Users/lmairl/Projects/css_framework'
+			'rootdir': '/Users/lmairl/Projects/destination_template'
 	};
 
 	grunt.initConfig({

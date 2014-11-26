@@ -2,9 +2,48 @@
 @import "libs/normalize";
 @import "libs/csstyle";
 @import "fonts";
+@import "mixins";
 @import "variables";
+@import "grid";
+@import "modules";
 
 
+section {
+	@include clearfix;
+}
+
+.layout__container {
+	max-width: $max-width;
+	margin: 0 auto;
+	border:1px solid green;
+}
+
+.article {}
+
+.article--indent {
+	@include offset-left(1);
+	@include offset-right(1);
+/*	@include at-breakpoint($large-screen) {
+		padding-left: 80px;
+		padding-right: 80px;
+	}
+	@include at-breakpoint($medium-screen) {
+		padding-left: 40px;
+		padding-right: 40px;
+	}
+	@include at-breakpoint($small-screen) {
+		padding-left: 20px;
+		padding-right: 20px;
+	}*/
+}
+
+.main__content {}
+
+.main__content--indent {
+	@include offset-left(1);
+	@include offset-right(1);
+}
+/*
 @include component(button) {
 	background-color: $color-green;
 	color: #fff;
@@ -44,4 +83,4 @@
     color: #6BD9ED;
     background: #1F1F1F;
   }
-}
+}*/
